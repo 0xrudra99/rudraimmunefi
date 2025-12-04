@@ -4,178 +4,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rudra Pratap Singh | 0xrudrapratap</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Rudra Pratap Singh | Security Researcher</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: JetBrains Mono for that dev feel -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Dracula / Dark Dev Theme Palette */
+            --bg-body: #0f172a;       /* Slate 900 */
+            --bg-card: #1e293b;       /* Slate 800 */
+            --bg-hover: #334155;      /* Slate 700 */
+            
+            --text-main: #f8fafc;     /* Slate 50 */
+            --text-muted: #94a3b8;    /* Slate 400 */
+            
+            --accent-color: #38bdf8;  /* Sky 400 */
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            
+            --border-color: #334155;
+            
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 40px 20px;
         }
 
-        h3 {
-            font-weight: bold;
-        }
-
-        .lead {
-            font-size: 1.25rem;
-        }
-
-        .article {
-            display: inline-block;
-            width: 30%;
-            margin: 10px;
-            text-align: center;
-        }
-
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
+        a {
+            color: var(--accent-color);
             text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* --- Sidebar Profile --- */
+        .profile-section {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-name {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .profile-role {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            margin-bottom: 20px;
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
+            background: var(--accent-glow);
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
-        .button5 {
-            background-color: white;
-            color: black;
-            border: 2px solid #555555;
+        .profile-bio {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
         }
 
-        .button5:hover {
-            background-color: #555555;
-            color: white;
+        .social-links {
+            display: flex;
+            gap: 20px;
         }
 
-        .blog-button {
-            background-color: #4DD0E1; /* Light blue color */
-            color: white;
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.4rem;
+        }
+
+        .social-links a:hover {
+            color: var(--text-main);
+            transform: translateY(-3px);
+        }
+
+        /* --- Main Content --- */
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: '#';
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-weight: 400;
+        }
+
+        /* Experience Cards */
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .job-company {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .job-date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .job-details {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Tags */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background: var(--accent-glow);
+        }
+
+        /* Blog List */
+        .blog-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .blog-item {
+            display: block;
+            background: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            text-decoration: none !important;
+        }
+        
+        .blog-item:first-child {
+            padding-top: 0;
+        }
+
+        .blog-item:hover .blog-title {
+            color: var(--accent-color);
+        }
+
+        .blog-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+
+        .blog-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .quick-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            transition-duration: 0.3s;
-            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-decoration: none !important;
+        }
+        
+        .btn:hover {
+            border-color: var(--accent-color);
+            background: var(--bg-hover);
         }
 
-        .blog-button:hover {
-            background-color: #3BAFDA; /* Slightly darker shade of blue for hover effect */
-            color: white;
+        /* Terminal/Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--accent-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
 
 <body>
-    <div class="container my-5">
-        <h3>Hello there!</h3>
-        <p class="lead">
-            I'm Rudra Pratap Singh, located in INDIA 🇮🇳 and working as a <b style="color: blue;">Smart contract / Web App Security Triager</b> at <strong>Immunefi</strong>, where I get to work on interesting topics on EVM hacks.
-            <br><br>
-            My interest revolves around Blockchain and Web technologies, with a strong desire to learn more about binary exploitation.
-            <br><br>
-            When I'm not working, I love playing CTF's for my team <b style="color: blue;">Water Paddlers</b> and <b style="color: blue;">thehackerscrew</b>, where I work on Blockchain or Web related challenges and I wish to work on Binary Exploitation challenges in the near future.
-            <br><br>
-            You can read my <a href="/posts" class="blog-button">BLOG</a> or checkout my <a href="/books" class="blog-button">Book Highlights</a> </br>
-            You can also checkout my <a href="/ai-notes" class="blog-button">AI Notes</a>
-        </p>
 
-        <a href="https://github.com/rudraimmunefi"><i class="fab fa-github" style="font-size: 24px;"></i></a>
-        <a href="https://twitter.com/0xrudrapratap"><i class="fab fa-twitter" style="font-size: 24px;"></i></a>
-        <a href="https://www.linkedin.com/in/0xrudra/"><i class="fab fa-linkedin" style="font-size: 24px;"></i></a>
-        <a href="https://www.youtube.com/@0xrudrapratap"><i class="fab fa-youtube" style="font-size: 24px;"></i></a>
-<br><br>
-        <!-- Experience Section -->
-        <div class="row mt-15" id="experience">
-            <div class="col-md-20">
-                <h3>Experience</h3>
-                <hr style="border: 1px solid #bebebe;">
-                <ul>
-                    <li>Full Time Bug Bounty Hunter - Feb, 2016 - Sep, 2021.</li>
-                    <li>Synack Red Team Member <a href="https://synack.com">@Synack</a> - August 2018 - <strong>Present</strong></li>
-                    <li>Smart Contract / Web Application Security Triager <a href="https://immunefi.com">@Immunefi</a> - August 2021 - <strong>Present</strong></li>
-                </ul>
+    <div class="container">
+        
+        <!-- Sidebar -->
+        <aside class="profile-section">
+            <div class="profile-header">
+                <div class="profile-name">Rudra Pratap Singh</div>
+                <div class="profile-role">Security Researcher</div>
             </div>
-        </div>
+            
+            <p class="profile-bio">
+                Specializing in Smart Contract Security, EVM hacks, and Web App Security. 
+                Currently triaging at <strong>Immunefi</strong> and hunting with <strong>Synack Red Team</strong>.
+                <br><br>
+                <i class="fas fa-map-marker-alt" style="color:var(--accent-color)"></i> &nbsp; India
+            </p>
 
-        <!-- Skills Section -->
-        <div class="row mt-15" id="skills">
-            <div class="col-md-20">
-                <h3>Skills</h3>
-                <hr style="border: 1px solid #bebebe;">
-                <ul>
-                    <li>Web Application Security Testing.</li>
-                    <li>Ethereum-based Blockchain Application Security Testing, including Smart Contract and DAPP (Smart contract/ DAPP)</li>
-                    <li>DevSecOps @Web security.</li>
-                    <li>Creating content on different security topics</li>
-                </ul>
+            <div class="social-links">
+                <a href="https://github.com/rudraimmunefi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/0xrudrapratap" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/0xrudra/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@0xrudrapratap" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
-        </div>
+        </aside>
 
-        <!-- Acknowledgements Section -->
-        <div class="row mt-15" id="experience">
-            <div class="col-md-20">
-                <h3>Acknowledgements</h3>
-                <hr style="border: 1px solid #bebebe;">
-                <ul>
-                    <li>Ranked among the top 50 hackers on the HackerOne platform of all time in 2020.</li>
-                    <li>An active member of Synack Red Teaming performing Vulnerability Assessment and Penetration Testing (VAPT).</li>
-                    <li>Individually reported 250+ valid vulnerability reports through the HackerOne platform alone, with an impact score of 20.</li>
-                    <li>Received acknowledgments from over 100 companies for reporting valid security vulnerabilities, including Facebook, Google, Snapchat, Paypal, and among others.</li>
-                </ul>
-            </div>
-        </div>
+        <!-- Main Content -->
+        <main>
 
-        <!-- Speaker Conferences Section -->
-        <div class="row mt-5" id="bucketlist">
-            <div class="col-md-8">
-                <h3>Speaker @Conferences</h3>
-                <hr style="border: 1px solid #bebebe;">
-                <strong>SeaSides 23, <a href="https://www.bugbountyvillage.com/first-speaker" target="_blank">Getting started with web3 bug bounties</a></strong> <br><br>
-                <strong>ThreatCon 22, <a href="https://2022.threatcon.io/agenda" target="_blank">Tour of Common Web3 Vulnerabilities by Rudra & Arbaz Hussain</a></strong> <br><br>
-                <strong>Bsides Ahmedabad 22, <a href="https://bsidesahmedabad.in/2022/Schedule.html" target="_blank">The Dark Side of DeFi By Rudra Singh (@0xrudrapratap) and Arbaz Hussain (@arbazkiraak)</a></strong> <br>
-                <i class="fab fa-twitter"></i><a href="https://twitter.com/ArbazKiraak/status/1576147520203657216" class="card-link">SLIDES</a> &nbsp;&nbsp;
-                <i class="fab fa-youtube"></i><a href="https://www.youtube.com/watch?v=09gRXZ69QAs" class="card-link">VIDEO</a>
-            </div>
-        </div>
+            <!-- Experience Section -->
+            <section id="experience">
+                <h2>Experience</h2>
+                
+                <div class="experience-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Smart Contract / Web App Security Triager</div>
+                            <div class="job-company">Immunefi</div>
+                        </div>
+                        <div class="job-date">Aug 2021 — Present</div>
+                    </div>
+                    <div class="job-details">
+                        Reviewing and triaging critical vulnerabilities in the DeFi ecosystem. Focusing on EVM mechanics and smart contract logic errors.
+                    </div>
+                </div>
 
-        <!-- Work Projects Section -->
-        <div class="row mt-5" id="skills">
-            <div class="col-md-12">
-                <h3>Work Projects</h3>
-                <p>Contributed to the infosec community by producing the following content.</p>
-                <hr style="border: 1px solid #bebebe;">
-                <ul>
-                    <li><i class="fab fa-medium"></i> <a href="https://medium.com/immunefi/mt-pelerin-double-transaction-bugfix-review-503838db3d70">Mt Pelerin Double Transaction Bugfix Review</a><br></li>
-                    <li><i class="fab fa-medium"></i> <a href="https://medium.com/immunefi/synthetix-logic-error-bugfix-review-40da0ead5f4f">Synthetix Logic Error Bugfix Review</a><br></li>
-                    <li><i class="fab fa-medium"></i> <a href="https://medium.com/immunefi/subdomain-takeover-bugs-when-theyre-applicable-and-when-they-re-not-1e6ce42de503">Subdomain Takeover Bugs — When They’re Applicable And When They’re Not</a><br></li>
-                    <li><i class="fab fa-medium"></i> <a href="https://medium.com/101-writeups/hacking-json-web-token-jwt-233fe6c862e6">Hacking JSON Web Token (JWT)</a><br></li>
-                    <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/watch?v=m7hDtIV_h_o"> Sense Finance $50k Bug Bounty Walkthrough</a><br></li>
-                    <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/watch?v=APhKvA8GS0U&t=738s"> Infosec Interviews: Why It’s Never Too Late to Change Your Path to Infosec</a><br></li>
-                    <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/watch?v=KeZVW1FxFMA"> Unlock the Blockchain Universe</a><br></li>
-                    <li><i class="fab fa-github"></i> <a href="https://github.com/rudraimmunefi/binary-exploitation">Binary Exploitation Resources</a><br></li>
-                </ul>
-            </div>
-        </div>
+                <div class="experience-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Red Team Member</div>
+                            <div class="job-company">Synack</div>
+                        </div>
+                        <div class="job-date">Aug 2018 — Present</div>
+                    </div>
+                    <div class="job-details">
+                        Performing rigorous VAPT on high-value targets. Member of an elite crowdsourced security team.
+                    </div>
+                </div>
 
-        <!-- Twitter Widget -->
-        <footer>
-            <div class="twitter-timeline-container" style="margin-top: 50px;">
-                <a class="twitter-timeline" data-height="750" href="https://twitter.com/0xrudrapratap?ref_src=twsrc%5Etfw">Tweets by 0xrudrapratap</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </footer>
+                <div class="experience-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Bug Bounty Hunter</div>
+                            <div class="job-company">Freelance</div>
+                        </div>
+                        <div class="job-date">2016 — 2021</div>
+                    </div>
+                    <div class="job-details">
+                        Ranked Top 50 on HackerOne (2020). 250+ valid vulnerabilities reported. Acknowledged by Google, Facebook, PayPal, and more.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2>Technical Arsenal</h2>
+                <div class="skills-grid">
+                    <span class="skill-tag">Smart Contract Security</span>
+                    <span class="skill-tag">Solidity / EVM</span>
+                    <span class="skill-tag">Web Security (OWASP)</span>
+                    <span class="skill-tag">Binary Exploitation</span>
+                    <span class="skill-tag">CTF Player</span>
+                </div>
+            </section>
+
+            <!-- Writing / Blog Section -->
+            <section id="writings">
+                <h2>Latest Transmissions</h2>
+                <div class="blog-list">
+                    <a href="/posts/general/compound-rareskills.html" class="blog-item">
+                        <div class="blog-meta">DeFi &middot; Research</div>
+                        <div class="blog-title">Learning Compound Finance | Rareskills</div>
+                        <div class="blog-desc">A deep dive into the mechanics of the Compound protocol.</div>
+                    </a>
+
+                    <a href="/posts/CTF/UofCTF24.html" class="blog-item">
+                        <div class="blog-meta">CTF Writeup</div>
+                        <div class="blog-title">UofCTF 2024 Challenges</div>
+                        <div class="blog-desc">Walkthrough of key web and crypto challenges.</div>
+                    </a>
+
+                    <a href="/posts/CTF/irisctf24.html" class="blog-item">
+                        <div class="blog-meta">CTF Writeup</div>
+                        <div class="blog-title">IrisCTF 2024: LameNote Exploitation</div>
+                    </a>
+                    
+                    <a href="/posts/general/proto.html" class="blog-item">
+                        <div class="blog-meta">Web Security</div>
+                        <div class="blog-title">Prototype Pollution: Zero to Hero</div>
+                    </a>
+                </div>
+
+                <div class="quick-links">
+                    <a href="/posts" class="btn"><i class="fas fa-list"></i> All Posts</a>
+                </div>
+            </section>
+
+            <footer>
+                <span style="color: var(--accent-color)">root@0xrudra:~$</span> echo "Thanks for visiting."<span class="cursor"></span>
+            </footer>
+
+        </main>
     </div>
-</body>
 
+</body>
 </html>
